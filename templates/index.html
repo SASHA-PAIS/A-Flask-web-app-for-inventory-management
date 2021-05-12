@@ -1,0 +1,102 @@
+<!-- Jinja template engine in flask to render the pages -->
+{% extends 'base-template.html' %}
+{% block css %}
+<link rel="stylesheet" href="../static/style.css" />
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h3>Description</h3>
+        <div class="Description">
+            {% if warehouses == None or warehouses|length == 0 %}
+            <div class="location">
+                <h3>No Warehouse Data Available Yet</h3>
+            </div>
+            {% else %}
+            <!-- List all the warehouses from the location table -->
+            <div class="location">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Loc_id</th>
+                            <th scope="col">Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for warehouse in warehouses %}
+                            <tr>
+                                <td>{{ warehouse[0] }}</td>
+                                <td>{{ warehouse[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+
+            {% if products == None or products|length == 0 %}
+            <div class="product">
+                <h3>No Product Data Available Yet</h3>
+            </div>
+            {% else %}
+            <!-- List all the products from the product table -->
+            <div class="product">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Prod_id</th>
+                            <th scope="col">name</th>
+                            <th scope="col">Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{ product[0] }}</td>
+                                <td>{{ product[1] }}</td>
+                                <td>{{ product[2] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="clr"></div> <!--Clear the above left and right floats-->
+
+    <div class="container">
+        <div id="summary">
+        <h3>Summary</h3>
+        {% if database == None or database|length ==0 %}
+            <h3>Summary Not Available Yet</h3>
+        {% else %}
+        <!-- Product| Unallocated Quantity| Total Quantity -->
+       
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Unallocated Quantity</th>
+                        <th scope="col">Total Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in database %}
+                        <tr>
+                            <td>{{ data[0] }}</td>
+                            <td>{{ data[1] }}</td>
+                            <td>{{ data[2] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

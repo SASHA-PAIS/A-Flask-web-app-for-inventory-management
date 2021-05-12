@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}
+    <link rel="stylesheet" href="../static/style.css">
+    {% endblock %}
+
+    <title>{% block title %} {{ title }} - Inventory Management {% endblock %}</title>
+    <style>
+        .container{
+            padding-top: 70px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+       <nav id="navbar">
+           <div class="container-nav">
+
+               <h1 class="logo"><a href="/">IMS</a></h1>
+               <ul>
+                   <li><a href="/">Summary</a></li>
+                   <li><a href="location.html">Location</a></li>
+                   <li><a href="product.html">Products</a></li>
+                   <li><a href="movement.html">Logistics</a></li>
+               </ul>
+           </div>
+       </nav>
+
+    </header>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

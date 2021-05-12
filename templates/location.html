@@ -1,0 +1,112 @@
+{% extends 'base-template.html' %}
+{% block css %}
+<link rel="stylesheet" href="../static/style.css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div id="location-cent">
+
+   
+        <table class="table">
+            <thead>
+                <th scope="col">Location ID</th>
+                <th scope="col">Location Name</th>
+                <th></th>
+    
+            </thead>
+            <tbody>
+                {% for location in warehouses %}
+                <tr>
+                    <td>{{ location[0] }}</td>
+                    <td>{{ location[1] }}</td>
+                    <!-- Delete button -->
+                    <td>
+                        <a href="{{ url_for('delete', loc_id=location[0], type='location') }}">
+                            <button name= "button" type = "button" class = "btn btn-danger" value="delete">delete</button><br>
+                        </a>
+                    </td>
+                    <!-- EDIT button -->
+                    <td>
+                        <button name="button" type="button" id="edit_{{ location[0] }}_{{ location[1] }}"  class="btn btn-success" value="edit" onclick = "get_id(this.id)">edit</button><br>   <!--onclick = "get_id(this.id)"-->
+                            <div>   
+                                <form action="{{ url_for('edit', type='location') }}" method="POST">
+                                    <div id="myModal" class="modal">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <input type="text" id="loc_name" name="loc_name" placeholder="{{ location[1] }}" >
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="text" id="loc_id" name="loc_id" value="{{ location[0] }}" hidden >  
+                                                <button type="button" id ="close" class="btn btn-default" >Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+            
+                        
+                    </td>
+                </tr>
+                {% endfor %}
+                <!-- Inserting data -->
+                <tr>
+                    <form action="{{ url_for('location') }}" method = "POST">
+                        <td></td>
+                        <td>
+                            <input type="text" name="warehouse_name" placeholder="Warehouse Name" required autofocus>
+                        </td>
+                        <td>
+                            <input type="submit" class="btn btn-info" value="submit"><br>
+                        </td>
+
+                    </form>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        // Get the button that opens the modal
+        
+        var btn ;
+        var loc_name = document.getElementById('loc_name');
+        var loc_id = document.getElementById('loc_id');
+
+        function get_id(id_new){
+             btn = document.getElementById(id_new);
+             var identity = id_new.split('_')[1];
+             var loc_final = id_new.split('_')[2];
+            //  window.alert(identity, loc_final);
+             loc_id.value = identity; 
+             loc_name.placeholder = loc_final; 
+             modal.style.display = "block";
+        }
+        
+
+        // btn.onclick = function(){
+        //     modal.style.display = "block";
+        // }
+
+        // Get the close button
+        var btn_close = document.getElementById("close");
+
+        btn_close.onclick = function(){
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+
+        }
+    </script>
+
+{% endblock %}

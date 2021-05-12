@@ -1,0 +1,148 @@
+{% extends 'base-template.html' %}
+{% block css %}
+<link rel="stylesheet" href="../static/style.css" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div id="location-cent">
+
+        
+        <table class="table">
+            <thead>
+                <th scope="col">Product ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product[0] }}</td>
+                        <td>{{ product[1] }}</td>
+                        <td>{{ product[2] }}</td>
+                        <!-- Delete button -->
+                        <td>
+                            <a href="{{ url_for('delete', prod_id = product[0], type='product') }}">
+                                <button name="button" type="button" class="btn btn-danger" value="delete">Delete</button><br>
+                            </a>
+                        </td>
+                        <!-- Edit button -->
+                        <td>
+                            <button name="button" type="button" id="edit_{{ product[0] }}_{{ product[1] }}_{{ product[2] }}" class="btn btn-success" value="edit" onclick = "get_id(this.id)" >Edit</button><br>
+                            <div>
+                                <form action="{{ url_for('edit', type='product') }}" method="POST" >
+                                    <div id="myModal" class="modal">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <input type="text" id="prod_name" name="prod_name" placeholder="{{ product[1] }}">
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="number" id="prod_quantity"  name="prod_quantity" oninput="quant_val()" placeholder="{{ product[2] }}">
+
+                                                <text class="font-weight-light">(only increase count)</text>  
+                                            </div>
+                                            <div class="clr"></div>
+                                            <div class="modal-footer">
+                                                <input type="text" id="product_id" name="product_id" value="{{ product[0] }}" hidden>    
+                                                <button type="button" id ="close" class="btn btn-default" >Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <!-- Inserting data -->
+                    <tr>
+                        <form action="{{ url_for('product') }}" method = "POST">
+                            <td></td>
+                            <td>
+                                <input type="text" name="prod_name" placeholder="Product Name" required autofocus>
+                            </td>
+                            <td>
+                                <input type="text" name="prod_quantity" placeholder="Quantity" required>
+                            </td>
+                            <td>
+                                <input type="submit" class="btn btn-info" value="submit"><br>
+                            </td>
+                        </form>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <script>
+        //Get the modal
+        var modal = document.getElementById("myModal");
+
+        //Get the button that opens the modal
+        var btn;
+        var prod_name = document.getElementById('prod_name');
+        var prod_quantity = document.getElementById('prod_quantity');
+        var product_id = document.getElementById('product_id');
+        var id;
+
+        function get_id(id_new)
+        {
+            btn = document.getElementById(id_new);
+            id = id_new;
+            var identity = id_new.split('_')[1];
+            var name = id_new.split('_')[2];
+            var quant = id_new.split('_')[3];
+
+            //window.alert(identity, name, quant);
+            product_id.value = identity;
+            prod_name.placeholder = name;
+            prod_quantity.placeholder = quant;
+            
+            modal.style.display = "block";
+
+        }
+
+        function quant_val()
+        {
+            let all = document.getElementsByClassName("btn btn-primary");
+            for(let i = 0; i<all.length; i++)
+            {
+                all[i].disabled = true;
+            }
+            //window.alert(id);
+            const curr_qty = parseInt(id.split('_')[3]);
+            let in_qty = parseInt(prod_quantity.value);
+
+            console.log(curr_qty);
+            console.log(in_qty);
+
+            if(in_qty >= curr_qty){
+                console.log("Okay");
+                for(let i=0; i<all.length; i++)
+                {
+                    all[i].disabled = false;
+                }
+            }
+
+        }
+
+        // Get the close button
+        var btn_close = document.getElementById("close");
+
+        btn_close.onclick = function(){
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+
+        }
+
+
+    </script>
+
+
+{% endblock %}
