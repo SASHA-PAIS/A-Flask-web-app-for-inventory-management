@@ -53,11 +53,11 @@ The _index/summary_ page covers the summary of the system as it includes the loc
 
 Create a database called inventory in mysql
 
-![](docs/inv1.jpg)
+![](docs/inv1.JPG)
 
 Then create a db.yaml file in which you need to add the database name, mysql username, password and host name
 
-![](docs/inv3.jpg)
+![](docs/inv3.JPG)
 
 ### Starting Things Up
 
@@ -69,7 +69,7 @@ Run the app by typing the following command in your command prompt:
 $ python -m flask run
 ```
 
-![](docs/inv2.jpg)
+![](docs/inv2.JPG)
 
 or
 
