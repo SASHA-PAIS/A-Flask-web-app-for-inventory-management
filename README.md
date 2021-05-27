@@ -45,7 +45,7 @@ Install the necessary dependencies which include:
 
 ## Overview
 
-The _index/summary_ page covers the summary of the system as it includes the location and product information alongwith the count of the unallocated products. On the _products_ page, we can add/edit/remove products from the system. The _location_ page covers similar functionality in the context of locations or warehouses. We can perform mvement of products on the _logistics_ page. It also maintains the history of the transactions in a tabular format.
+The _index/summary_ page covers the summary of the entire system as it includes the location and product information alongwith the count of the unallocated products. On the _products_ page, we can add/edit/remove products from the system. The _location_ page covers similar functionality in the context of locations or warehouses. We can perform movement of products on the _logistics_ page. It also maintains the history of the transactions in a tabular format.
 
 ## Usage
 
