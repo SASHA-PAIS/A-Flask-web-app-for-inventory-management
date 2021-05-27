@@ -88,7 +88,7 @@ A new system will look like this
 
 #### Adding products and locations
 
-To add products, only the name and quantity are required
+To add products, only the name and quantity are required.
 Adding locations needs only the name to be added
 
 ![](docs/vid2.gif)
@@ -96,7 +96,7 @@ Adding locations needs only the name to be added
 #### Editing or deleting products and locations
 
 You can edit a location name or delete a particular location. Similarly, 
-you can edit a product name, increase the count of the product or delete a product name.
+you can edit a product name, increase the count of the product or delete a product.
 
 ![](docs/vid3.gif)
 
