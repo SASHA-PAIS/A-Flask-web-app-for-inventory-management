@@ -53,9 +53,11 @@ The _index/summary_ page covers the summary of the system as it includes the loc
 
 Create a database called inventory in mysql
 
+![](docs/inv1.jpg)
+
 Then create a db.yaml file in which you need to add the database name, mysql username, password and host name
 
-
+![](docs/inv3.jpg)
 
 ### Starting Things Up
 
@@ -66,6 +68,9 @@ Run the app by typing the following command in your command prompt:
 ```sourceCode console
 $ python -m flask run
 ```
+
+![](docs/inv2.jpg)
+
 or
 
 ```sourceCode console
@@ -77,7 +82,9 @@ The application can be accessed at _localhost:5000_ in your browser
 
 ### Getting into it
 
-A new system will look like Things
+A new system will look like this
+
+![](docs/vid1.gif)
 
 #### Adding products and locations
 
