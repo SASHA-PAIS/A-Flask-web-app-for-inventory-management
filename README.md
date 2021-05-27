@@ -93,10 +93,11 @@ Adding locations needs only the name to be added
 
 ![](docs/vid2.gif)
 
-#### Editing or deleting products and locations
+#### Editing products and locations
 
-You can edit a location name or delete a particular location. Similarly, 
-you can edit a product name, increase the count of the product or delete a product.
+You can edit a location or product name if the new name is not empty or is not already present in the system. 
+
+You can also increase the quantity of the product, but not decrease it. When this happens, the product quantity gets updated with the new quantity in the products table. Also, the unallocated quantity of that product also increases by the difference of the old product quantity and the new product quantity.
 
 ![](docs/vid3.gif)
 
@@ -113,9 +114,19 @@ Once the products are in some warehouse, they can be moved easily to some other 
 
 #### Deleting a location that has already been allocated some products
 
+For all the products that currently exist in this particular location that has to be deleted, we first increase the unallocated quantities of these products by the quantity of the products that has been allocated in this location. 
+
+Then, we delete the records from the logistics table where the to_loc & from_loc ids are the same as the location to be deleted. 
+
+Then this location is deleted from the location table. 
+
 ![](docs/vid5.gif)
 
 #### Deleteing a product that has already been allocated
+
+The record in the logistics table, where the prod_id is equal to the id of the product to be deleted, is removed first.
+
+Then the product is deleted from the products table.
 
 ![](docs/vid6.gif)
 
