@@ -91,10 +91,14 @@ A new system will look like this
 To add products, only the name and quantity are required
 Adding locations needs only the name to be added
 
+![](docs/vid2.gif)
+
 #### Editing or deleting products and locations
 
 You can edit a location name or delete a particular location. Similarly, 
 you can edit a product name, increase the count of the product or delete a product name.
+
+![](docs/vid3.gif)
 
 #### Moving things around
 
@@ -105,9 +109,15 @@ and just enter the to_loc (destination) location.
 
 Once the products are in some warehouse, they can be moved easily to some other warehouse.
 
+![](docs/vid4.gif)
+
 #### Deleting a location that has already been allocated some products
 
+![](docs/vid5.gif)
+
 #### Deleteing a product that has already been allocated
+
+![](docs/vid6.gif)
 
 ## License
 
